@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { HttpService } from "../../commons/http.service";
 import { URLSearchParams} from '@angular/http';
+import { AboutPage } from "../about/about";
 
 @Component({
   selector: 'page-home',
@@ -12,10 +13,9 @@ export class HomePage {
   city:string = "青岛";
   constructor(public navCtrl: NavController,
               public http: HttpService,
-              public toastCtrl: ToastController,
-
+              public toastCtrl: ToastController
   ) {
-    this.searchWeather(this.city);
+    // this.searchWeather(this.city);
   }
   /*
   * 根据手机定位的经纬度查询城市名称
@@ -23,7 +23,9 @@ export class HomePage {
   getCityName(){
 
   }
-
+  goToAbout(){
+    this.navCtrl.push(AboutPage);
+  }
   /*
   * 根据城市名称查询天气
   * */
