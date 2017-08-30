@@ -17,15 +17,13 @@ export class HttpService {
   * */
   get(url: string, params: URLSearchParams): Promise<JSON> {
     params.set("key", this.key);
-    console.log(this.genUrl(url));
-    console.log(params);
     return new Promise((resolve, reject) => {
       this.http.get(this.genUrl(url), {search: params})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
         }, err => {
-          reject
+          reject(err);
         });
     })
   }
