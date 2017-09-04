@@ -1,3 +1,29 @@
 page-home {
-
+  .text-c{
+    text-align: center;
+  }
+  .text-r{
+    text-align: right;
+  }
+  .f-l{
+    float: left;
+  }
+  .f-r{
+    float: right;
+  }
+  .cityName{
+    line-height: 44px;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .top_dv{
+    display: flex;
+  }
+  .top_dv div{
+    flex: 1;
+    padding: 0px 5px;
+  }
+  .pin-pos{
+    margin-left: -5px;
+  }
 }

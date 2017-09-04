@@ -1,9 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <div class="top_dv">
+    <div>
+      <button ion-button icon-only clear menuToggle>
+        <ion-icon name="md-menu" onclick="toggleMenu()"></ion-icon>
+      </button>
+    </div>
+    <div class="text-c cityName">
+      <ion-icon name="ios-pin-outline" style="margin-left: -10px"></ion-icon>
+      青岛
+    </div>
+    <div class="f-r text-r">
+      <button ion-button icon-only clear end>
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </div>
+  </div>
 </ion-header>
-
 <ion-content padding>
   <h2>Welcome to Ionic!</h2>
   <p>

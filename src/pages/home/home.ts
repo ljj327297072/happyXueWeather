@@ -23,6 +23,9 @@ export class HomePage {
   getCityName(){
 
   }
+  /*
+  * 去详情页
+  * */
   goToAbout(){
     this.navCtrl.push(AboutPage);
   }
@@ -72,4 +75,10 @@ export class HomePage {
       })
   }
 
+  /*
+  * 打开或关闭menu
+  * */
+  toggleMenu(){
+
+  }
 }
