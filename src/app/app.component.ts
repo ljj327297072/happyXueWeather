@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {TabsPage} from "../pages/tabs/tabs";
 
+import { TabsPage } from "../pages/tabs/tabs";
+import { ShowCity } from "../pages/modal/showcity/showcity";
+import {AddCity} from "../pages/modal/addcity/addcity";
 
 @Component({
   templateUrl: 'app.html'
@@ -20,4 +22,3 @@ export class MyApp {
     });
   }
 }
-

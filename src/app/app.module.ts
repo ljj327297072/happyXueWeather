@@ -6,11 +6,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 
-import { TabsPage } from "../pages/tabs/tabs";
-import {AboutPage} from "../pages/about/about";
-import { HomePage } from '../pages/home/home';
-
 import { HttpModule } from '@angular/http';
+
+import { TabsPage } from "../pages/tabs/tabs";
+import { AboutPage } from "../pages/about/about";
+import { HomePage } from '../pages/home/home';
+import { ShowCity } from "../pages/modal/showcity/showcity"
+import { AddCity } from "../pages/modal/addcity/addcity";
+
+
 
 
 @NgModule({
@@ -18,7 +22,9 @@ import { HttpModule } from '@angular/http';
     MyApp,
     HomePage,
     TabsPage,
-    AboutPage
+    AboutPage,
+    ShowCity,
+    AddCity
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,9 @@ import { HttpModule } from '@angular/http';
     MyApp,
     HomePage,
     TabsPage,
-    AboutPage
+    AboutPage,
+    ShowCity,
+    AddCity
   ],
   providers: [
     StatusBar,

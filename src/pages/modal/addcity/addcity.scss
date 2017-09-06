@@ -1,0 +1,26 @@
+add-city{
+  .search_city{
+    width: 100%;
+    height: 30px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 1px #000;
+  }
+  .search_city input{
+    width: 70%;
+    margin-left: 10%;
+    height: 100%;
+    border-radius: 50px 0px 0px 50px;
+    border: none;
+    //text-align: center;
+  }
+  .search_city span{
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    border-radius: 0px 50px 50px 0px;
+  }
+}

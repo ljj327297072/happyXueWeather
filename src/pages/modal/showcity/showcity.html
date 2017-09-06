@@ -1,0 +1,43 @@
+<ion-header>
+  <div class="top_dv">
+    <div>
+      <button ion-button icon-only clear color="dark" (click)="closeModal()">
+        <ion-icon name="ios-arrow-back-outline"></ion-icon>
+      </button>
+    </div>
+    <div class="text-c title">
+      选择城市
+    </div>
+    <div class="text-r">
+      <button ion-button icon-only clear color="dark" (click)="addCity()">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+    </div>
+  </div>
+</ion-header>
+<ion-content padding>
+  <ion-list style="margin-top: 40px" class="cityList">
+     <ion-item>
+       <div class="f-l icon">
+         <ion-icon name="md-sunny"></ion-icon>
+       </div>
+       <div class="f-l">
+         <span>青州市 - 潍坊</span>
+       </div>
+       <div class="f-r">
+         20℃
+       </div>
+     </ion-item>
+    <ion-item>
+      <div class="f-l icon">
+        <ion-icon name="md-cloudy-night"></ion-icon>
+      </div>
+       <div class="f-l">
+         <span>莱西市 - 青岛</span>
+       </div>
+      <div class="f-r">
+        20℃
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

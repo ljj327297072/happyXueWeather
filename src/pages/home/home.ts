@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, ModalController } from 'ionic-angular';
 import { HttpService } from "../../commons/http.service";
 import { URLSearchParams} from '@angular/http';
 import { AboutPage } from "../about/about";
+import { ShowCity } from "../modal/showcity/showcity"
+import {AddCity} from "../modal/addcity/addcity";
 
 @Component({
   selector: 'page-home',
@@ -13,7 +15,8 @@ export class HomePage {
   city:string = "青岛";
   constructor(public navCtrl: NavController,
               public http: HttpService,
-              public toastCtrl: ToastController
+              public toastCtrl: ToastController,
+              public modalCtrl: ModalController
   ) {
     // this.searchWeather(this.city);
   }
@@ -28,6 +31,14 @@ export class HomePage {
   * */
   goToAbout(){
     this.navCtrl.push(AboutPage);
+  }
+  /*
+   * 打开或关闭menu
+   * */
+  toggleMenu(){
+    console.log(111111111);
+    let modal = this.modalCtrl.create(ShowCity);
+    modal.present();
   }
   /*
   * 根据城市名称查询天气
@@ -75,10 +86,5 @@ export class HomePage {
       })
   }
 
-  /*
-  * 打开或关闭menu
-  * */
-  toggleMenu(){
 
-  }
 }

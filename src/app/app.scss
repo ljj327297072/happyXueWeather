@@ -16,8 +16,36 @@
 // automatically applied to the <body> element in the app.
 
 /*
-  修改toast样式
-*/
+*  公共样式
+**/
+.f-l{
+  float: left;
+}
+.f-r{
+  float: right;
+}
+.text-c{
+  text-align: center;
+}
+.text-r{
+  text-align: right;
+}
+
+.title{
+  line-height: 44px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.top_dv{
+  display: flex;
+}
+.top_dv div{
+  flex: 1;
+  padding: 0px 5px;
+}
+/*
+*  修改toast样式
+**/
 .customeToast .toast-wrapper{
   width: 80%;
   background: rgba(3,3,3,0.6);
