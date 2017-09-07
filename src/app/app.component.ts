@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from "../pages/tabs/tabs";
 import { ShowCity } from "../pages/modal/showcity/showcity";
-import {AddCity} from "../pages/modal/addcity/addcity";
+import { AddCity } from "../pages/modal/addcity/addcity";
 
 @Component({
   templateUrl: 'app.html'

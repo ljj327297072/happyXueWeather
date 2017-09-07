@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, ModalController } from 'ionic-angular';
+import { NavController, ToastController, ModalController, NavParams } from 'ionic-angular';
 import { HttpService } from "../../commons/http.service";
-import { URLSearchParams} from '@angular/http';
+import { URLSearchParams } from '@angular/http';
 import { AboutPage } from "../about/about";
-import { ShowCity } from "../modal/showcity/showcity"
-import {AddCity} from "../modal/addcity/addcity";
+import { ShowCity } from "../modal/showcity/showcity";
 
 @Component({
   selector: 'page-home',
@@ -12,12 +11,18 @@ import {AddCity} from "../modal/addcity/addcity";
   providers: [HttpService]
 })
 export class HomePage {
-  city:string = "青岛";
+  cityName: string = "青岛";
+  cityId: string;
   constructor(public navCtrl: NavController,
               public http: HttpService,
               public toastCtrl: ToastController,
-              public modalCtrl: ModalController
+              public modalCtrl: ModalController,
+              public navParams: NavParams
   ) {
+    this.cityId = this.navParams.get("cityId");
+    if(this.cityId){
+      console.log(this.cityId);
+    }
     // this.searchWeather(this.city);
   }
   /*

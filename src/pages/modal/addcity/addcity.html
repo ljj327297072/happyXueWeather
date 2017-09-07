@@ -18,15 +18,15 @@
     <input type="text" [(ngModel)]="cityName" class="f-l"> <span (click)="searchCity()">搜索</span>
   </div>
   <div class="pre_city">
-    <ion-list style="margin-top: 40px" class="cityList">
-      <ion-item>
+    <ion-list *ngIf="showResult" style="margin-top: 40px" class="cityList">
+      <ion-item  *ngIf="searchResult" (click)="addCity(preCityName, preProvName, preCityId)">
         <div class="f-l">
-          <span>青州市 - 潍坊</span>
+          <span>{{preCityName}} - {{preProvName}}</span>
         </div>
       </ion-item>
-      <ion-item>
+      <ion-item  *ngIf="!searchResult">
         <div class="f-l">
-          <span>莱西市 - 青岛</span>
+          <span>未查询到所输入的城市！</span>
         </div>
       </ion-item>
     </ion-list>
