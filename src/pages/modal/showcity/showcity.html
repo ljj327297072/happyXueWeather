@@ -15,29 +15,25 @@
     </div>
   </div>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <ion-list style="margin-top: 40px" class="cityList">
-     <ion-item>
-       <div class="f-l icon">
-         <ion-icon name="md-sunny"></ion-icon>
-       </div>
-       <div class="f-l">
-         <span>青州市 - 潍坊</span>
-       </div>
-       <div class="f-r">
-         20℃
-       </div>
-     </ion-item>
-    <ion-item>
-      <div class="f-l icon">
-        <ion-icon name="md-cloudy-night"></ion-icon>
-      </div>
-       <div class="f-l">
-         <span>莱西市 - 青岛</span>
-       </div>
-      <div class="f-r">
-        20℃
-      </div>
+    <ion-item *ngIf="showFlag">
+      请添加城市......
     </ion-item>
+    <ion-item-sliding  *ngFor="let city of cityList" (click)="goToHomePage(city.cityName,city.cityId)">
+      <button ion-item>
+        <ion-avatar item-start>
+          <img src="assets/weather_img/{{city.weather_code}}.png" alt="">
+        </ion-avatar>
+        <h2 style="margin-top: 0px">{{city.cityName}}</h2>
+        <h2 item-end>{{city.temperature}}℃</h2>
+      </button>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteCity(city.cityId)">
+          <ion-icon name="close" style="margin: 0 auto"></ion-icon>
+          删除
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

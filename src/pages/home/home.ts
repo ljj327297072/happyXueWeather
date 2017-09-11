@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, ModalController, NavParams } from 'ionic-angular';
-import { HttpService } from "../../commons/http.service";
+import { HttpService } from "../../commons/http.service2";
 import { URLSearchParams } from '@angular/http';
 import { AboutPage } from "../about/about";
 import { ShowCity } from "../modal/showcity/showcity";
@@ -11,7 +11,8 @@ import { ShowCity } from "../modal/showcity/showcity";
   providers: [HttpService]
 })
 export class HomePage {
-  cityName: string = "青岛";
+  cityWeather: any;
+  cityName: string = "哈哈哈";
   cityId: string;
   constructor(public navCtrl: NavController,
               public http: HttpService,
@@ -19,16 +20,12 @@ export class HomePage {
               public modalCtrl: ModalController,
               public navParams: NavParams
   ) {
-    this.cityId = this.navParams.get("cityId");
-    if(this.cityId){
-      console.log(this.cityId);
-    }
-    // this.searchWeather(this.city);
+    this.searchWeather("WX4FBXXFKE4F");
   }
   /*
-  * 根据手机定位的经纬度查询城市名称
+  * 根据手机定位的经纬度查询城市ID
   * */
-  getCityName(){
+  getCityLocation(){
 
   }
   /*
@@ -41,44 +38,26 @@ export class HomePage {
    * 打开或关闭menu
    * */
   toggleMenu(){
-    console.log(111111111);
     let modal = this.modalCtrl.create(ShowCity);
+    modal.onDidDismiss(data => {
+      if(data){
+        this.searchWeather(data.selectCity.cityId);
+        this.cityName = data.selectCity.cityName;
+      }
+    });
     modal.present();
   }
   /*
-  * 根据城市名称查询天气
+  * 根据城市ID查询天气
   * */
   searchWeather(city){
     let params = new URLSearchParams();
-    params.set("city", city);
-    this.http.get("/weather", params).then(res => {
-      let heWeather = res["HeWeather5"][0];
-      if(heWeather.status == "ok"){
-        console.log(heWeather);
-      }else if(heWeather.status == "unknown city"){
-        let toast = this.toastCtrl.create({
-          message: "请输入正确的城市名称",
-          cssClass: "customeToast",
-          duration: 1500,
-          position: "top"
-        });
-        toast.present();
-      }else if(heWeather.status == "params invalid"){
-        let toast = this.toastCtrl.create({
-          message: "参数错误，请联系作者",
-          cssClass: "customeToast",
-          duration: 1500,
-          position: "top"
-        });
-        toast.present();
-      }else if(heWeather.status == "anr"){
-        let toast = this.toastCtrl.create({
-          message: "请求超时",
-          cssClass: "customeToast",
-          duration: 1500,
-          position: "top"
-        });
-        toast.present();
+    params.set("cityid", city);
+    this.http.get("/now", params).then(res => {
+      if(res['status']== "OK"){
+        let weather = res['weather'][0];
+        console.log(weather);
+        this.cityWeather = weather;
       }
     }).catch(err => {
         let toast = this.toastCtrl.create({

@@ -13,22 +13,15 @@
     </div>
   </div>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <div class="search_city">
     <input type="text" [(ngModel)]="cityName" class="f-l"> <span (click)="searchCity()">搜索</span>
   </div>
   <div class="pre_city">
-    <ion-list *ngIf="showResult" style="margin-top: 40px" class="cityList">
-      <ion-item  *ngIf="searchResult" (click)="addCity(preCityName, preProvName, preCityId)">
-        <div class="f-l">
-          <span>{{preCityName}} - {{preProvName}}</span>
-        </div>
-      </ion-item>
-      <ion-item  *ngIf="!searchResult">
-        <div class="f-l">
-          <span>未查询到所输入的城市！</span>
-        </div>
-      </ion-item>
+    <ion-list *ngIf="showFlag" style="margin-top: 40px" class="cityList">
+      <button ion-item *ngFor="let city of preCityList" (click)="addCity(city.name, city.id)">
+        {{city.path}}
+      </button>
     </ion-list>
   </div>
 </ion-content>
