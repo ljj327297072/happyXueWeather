@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, ModalController, NavParams } from 'ionic-angular';
-import { HttpService } from "../../commons/http.service2";
+import { NavController, ToastController, ModalController, NavParams, LoadingController } from 'ionic-angular';
+import { HttpService } from "../../commons/http.service";
 import { URLSearchParams } from '@angular/http';
 import { AboutPage } from "../about/about";
 import { ShowCity } from "../modal/showcity/showcity";
@@ -12,15 +12,22 @@ import { ShowCity } from "../modal/showcity/showcity";
 })
 export class HomePage {
   cityWeather: any;
-  cityName: string = "哈哈哈";
-  cityId: string;
+  nowCity: any = {
+    cityName: "请添加城市",
+    provName: null,
+    cityId: null
+  };
   constructor(public navCtrl: NavController,
               public http: HttpService,
               public toastCtrl: ToastController,
               public modalCtrl: ModalController,
-              public navParams: NavParams
+              public loadingCtrl: LoadingController
   ) {
-    this.searchWeather("WX4FBXXFKE4F");
+    if(localStorage.getItem("nowCity")){
+      let nowCity = JSON.parse(localStorage.getItem("nowCity"));
+      this.nowCity = nowCity;
+      this.searchWeather(nowCity.cityId);
+    }
   }
   /*
   * 根据手机定位的经纬度查询城市ID
@@ -39,12 +46,6 @@ export class HomePage {
    * */
   toggleMenu(){
     let modal = this.modalCtrl.create(ShowCity);
-    modal.onDidDismiss(data => {
-      if(data){
-        this.searchWeather(data.selectCity.cityId);
-        this.cityName = data.selectCity.cityName;
-      }
-    });
     modal.present();
   }
   /*
@@ -52,14 +53,20 @@ export class HomePage {
   * */
   searchWeather(city){
     let params = new URLSearchParams();
-    params.set("cityid", city);
-    this.http.get("/now", params).then(res => {
-      if(res['status']== "OK"){
-        let weather = res['weather'][0];
+    params.set("city", city);
+    let load = this.loadingCtrl.create({
+      content:"稍等一下~~"
+    });
+    load.present();
+    this.http.get("/weather", params).then(res => {
+      load.dismiss();
+      let weather = res["HeWeather5"][0];
+      if(weather['status']== "ok"){
         console.log(weather);
         this.cityWeather = weather;
       }
     }).catch(err => {
+        load.dismiss();
         let toast = this.toastCtrl.create({
           message: "请求失败",
           cssClass: "customeToast",

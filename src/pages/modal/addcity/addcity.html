@@ -15,12 +15,12 @@
 </ion-header>
 <ion-content>
   <div class="search_city">
-    <input type="text" [(ngModel)]="cityName" class="f-l"> <span (click)="searchCity()">搜索</span>
+    <input type="text" [(ngModel)]="cityName" class="f-l"  placeholder="{{cityNamePlace}}"> <span (click)="searchCity()">搜索</span>
   </div>
   <div class="pre_city">
     <ion-list *ngIf="showFlag" style="margin-top: 40px" class="cityList">
-      <button ion-item *ngFor="let city of preCityList" (click)="addCity(city.name, city.id)">
-        {{city.path}}
+      <button ion-item (click)="addCity(preCityName, preProvName,preCityId)">
+        {{preCityName}} — {{preProvName}}
       </button>
     </ion-list>
   </div>
