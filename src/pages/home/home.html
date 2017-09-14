@@ -20,7 +20,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content
         pullingIcon="arrow-dropdown"
-        pullingText="松开刷新..."
+        pullingText="上次数据更新时间：{{cityWeather.basic.update.loc}}"
         refreshingSpinner="circles"
         refreshingText="刷新中...">
       </ion-refresher-content>

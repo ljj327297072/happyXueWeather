@@ -12,6 +12,11 @@ import { ShowCity } from "../modal/showcity/showcity";
 })
 export class HomePage {
   cityWeather: any ={
+    basic:{
+      update:{
+        loc:""
+      }
+    },
     now:{
       tmp:"",
       cond:{
