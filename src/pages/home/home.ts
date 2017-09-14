@@ -11,7 +11,27 @@ import { ShowCity } from "../modal/showcity/showcity";
   providers: [HttpService]
 })
 export class HomePage {
-  cityWeather: any;
+  cityWeather: any ={
+    now:{
+      tmp:"",
+      cond:{
+        txt:""
+      },
+      wind:{
+        dir:"",
+        sc:""
+      },
+      hum:"",
+      pres:""
+    },
+    aqi:{
+      city:{
+        qlty:"",
+        pm25:""
+      }
+    },
+    daily_forecast: [],
+  };
   nowCity: any = {
     cityName: "请添加城市",
     provName: null,
@@ -36,11 +56,30 @@ export class HomePage {
 
   }
   /*
-  * 去详情页
+  * 下拉刷新
   * */
-  goToAbout(){
-    this.navCtrl.push(AboutPage);
+  doRefresh(refresher) {
+    let params = new URLSearchParams();
+    params.set("city", this.nowCity.cityId);
+    this.http.get("/weather", params).then(res => {
+      refresher.complete();
+      let weather = res["HeWeather5"][0];
+      if(weather['status']== "ok"){
+        console.log(weather);
+        this.cityWeather = weather;
+
+      }
+    }).catch(err => {
+      refresher.complete();
+      let toast = this.toastCtrl.create({
+        message: "请求失败",
+        cssClass: "customeToast",
+        duration: 1500,
+        position: "top"
+      });
+    })
   }
+
   /*
    * 打开或关闭menu
    * */

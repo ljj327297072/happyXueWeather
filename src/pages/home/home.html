@@ -16,7 +16,84 @@
     </div>
   </div>
 </ion-header>
-<ion-content padding>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="松开刷新..."
+        refreshingSpinner="circles"
+        refreshingText="刷新中...">
+      </ion-refresher-content>
+    </ion-refresher>
+      <div class="cl pd-8" style="margin-top: 40px">
+        <div class="f-l">
+          <span style="font-size: 60px;position: relative">{{cityWeather.now.tmp}} <sup style="font-size: 20px;position: absolute;top: 25px;right: -50px">℃&nbsp;{{cityWeather.now.cond.txt}}</sup></span>
+        </div>
+        <div class="f-r aqi_dv cl">
+          <div class="line" style="background: green"></div>
+          <div class="cl">
+            <span class="f-l">{{cityWeather.aqi.city.pm25}}</span><span class="f-r" style="font-size: 10px">{{cityWeather.aqi.city.qlty}}</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 10px" class="pd-8">
+        {{cityWeather.now.wind.dir}}&nbsp;&nbsp;{{cityWeather.now.wind.sc}}级&nbsp;&nbsp;&nbsp;&nbsp;湿度&nbsp;&nbsp;{{cityWeather.now.hum}}%&nbsp;&nbsp;&nbsp;&nbsp;气压&nbsp;&nbsp;{{cityWeather.now.pres}} hPa
+      </div>
+      <div class="daily">
+        <div class="cl" *ngFor="let daily of cityWeather.daily_forecast">
+          <div class="cl">
+          <span class="f-l">
+            {{daily.date}}
+          </span>
+          </div>
+          <div class="cl" style="margin-top: 5px;height: 30px;line-height: 30px">
+            <div class="f-l" *ngIf="daily.cond.txt_d != daily.cond.txt_n">
+              {{daily.cond.txt_d}}转{{daily.cond.txt_n}}
+            </div>
+            <div class="f-l" *ngIf="daily.cond.txt_d == daily.cond.txt_n">
+              {{daily.cond.txt_d}}
+            </div>
+            <div class="f-r">
+              <img src="assets/weather_img/{{daily.cond.code_d}}.png" alt="" width="30px">
+            </div>
+          </div>
+          <div class="cl" style="margin-top: 5px;height: 35px;line-height: 35px">
+            <div class="f-l">
+              {{daily.tmp.min}}~{{daily.tmp.max}}度
+            </div>
+            <div class="f-r" *ngIf="daily.cond.txt_d != daily.cond.txt_n">
+              <img src="assets/weather_img/{{daily.cond.code_n}}.png" width="30px" alt="">
+            </div>
+          </div>
+          <div class="cl" style="margin-top: 5px">
+            <div class="f-l">
+              {{daily.wind.dir}}
+            </div>
+            <div class="f-r">
+              {{daily.wind.sc}}级
+            </div>
+          </div>
+          <div class="cl" style="margin-top: 5px">
+            <div class="f-l">
+              日出：
+            </div>
+            <div class="f-r">
+              {{daily.astro.sr}}
+            </div>
+          </div>
+          <div class="cl" style="margin-top: 5px">
+            <div class="f-l">
+              日落：
+            </div>
+            <div class="f-r">
+              {{daily.astro.ss}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="suggestion">
+        <div>
 
-
+        </div>
+      </div>
 </ion-content>

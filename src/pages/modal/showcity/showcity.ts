@@ -60,6 +60,7 @@ export class ShowCity {
     let nowCity = {"cityName": cityName, "cityId": cityId, "provName": provName}
     localStorage.setItem("nowCity", JSON.stringify(nowCity));
     this.navCtrl.push(TabsPage, {tabSelect: "1"});
+    // this.viewCtrl.dismiss();
   }
   showCity(){
     if(localStorage.getItem("cityList")){

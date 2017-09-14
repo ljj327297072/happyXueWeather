@@ -2,4 +2,48 @@ page-home {
   .pin-pos{
     margin-left: -5px;
   }
+  .aqi_dv{
+    width: 60px;
+    height: 40px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 8px 10px;
+  }
+  .aqi_dv .line{
+    width: 100%;
+    margin: 0 auto;
+    height: 2px;
+    margin-bottom: 8px;
+  }
+  .daily{
+    //height: 60px;
+    //background: red;
+    margin-top: 40px;
+    display: flex;
+    border-radius: 10px;
+  }
+  .daily>div{
+    flex: 1;
+    //height: 100px;
+    background: rgba(0,0,0,0.05);
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+    padding: 8px;
+    font-size: 14px;
+  }
+  .daily .line{
+    width: 30px;
+    height: 20px;
+    background: green;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 5px;
+    margin-left: 5px;
+    color: #fff;
+  }
+  .suggestion{
+    height: 40px;
+    background: red;
+    margin-top: 40px;
+  }
 }
